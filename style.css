@@ -105,3 +105,25 @@ footer {
     margin-top: 2rem;
     background-color: #eee;
 }
+
+
+.all_cards{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.card{
+    border-radius: 2px;
+    background-color: #2f1a67;
+    
+
+    width: 200px;
+    height: 200px;
+}
+
+.card_content{
+    text-align: center;
+    color: #ccc;
+    font-weight: bold;
+    
+}
