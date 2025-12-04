@@ -1,31 +1,29 @@
+<?php include('header.php') ?>
+
+
 <?php
-// checking if the data is sent to the server
-// if(isset($_GET['submit'])){
-//     echo $_GET['title'];
-//     echo $_GET['level'];
+$conn=include('connect_php.php');
+$sql="SELECT * FROM courses";
+$result=mysqli_query($conn,$sql);
 
-// }
-// if(isset($_POST['submit'])){
-//     echo $_POST['title'];
-//     echo $_POST['level'];
-// }
-
-// if(isset($_POST['submit'])){
-//     session_start();
-
-//     $_SESSION['title']=$_POST['title'];
-//     echo $_SESSION['title'];
-
-//     if(!isset($_SESSION['counter'])){
-//         $_SESSION['counter']=0;
-//     }else{
-//         $_SESSION['counter']++;
-//     }
-// echo $_SESSION['counter'];
-// }
-
+// fetching the row results to an array
+$courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
+// print_r($courses);
 
 ?>
 
-<?php include('header.php') ?>
+<div class="all_cards">
+    <?php foreach($courses as $course){ ?>
+        <div class="card">
+            <div class="card_content">
+                <h5> <?php echo htmlspecialchars($course['title']);?> </h5>
+                <h5> <?php echo htmlspecialchars($course['level']);?> </h5>
+    
+            </div>
+        </div>
+    <?php }?>
+
+</div>
+
+
 <?php include('./footer.php') ?>
