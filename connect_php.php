@@ -14,10 +14,10 @@ $connect=mysqli_connect($db_server,
 
 
 // making sure if the connection went well
-if($connect){
-    echo "You are connected!";
-}else{
-    echo"Connection failed!";
-}
-
+// if($connect){
+//     echo "You are connected!";
+// }else{
+//     echo"Connection failed!";
+// }
+return $connect;
 ?>
