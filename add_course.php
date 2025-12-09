@@ -1,19 +1,40 @@
-<?php include('header.php') ?>
-<?php 
+<?php include('header.php') ;
+include('connect_php.php');
 
 
 
 if(isset($_POST['submit'])){
     
-    echo $_POST['title'] ."<br>";
-    echo $_POST['description'];
-    // echo $_GET['level'];
-}
+    if(empty($_POST['title'])){
+        echo "Tiltle is required";
+    }else{
+        echo htmlspecialchars($_POST['title']);
+    }
 
+if(empty($_POST['description'])){
+        echo "Description is required";
+    }else{
+        echo htmlspecialchars($_POST['description']);
+    }
+if(!isset($_POST['level'])){
+        echo "Choose a level";
+    }elseif(in_array($_POST['level'],["Débutant","Intermédiaire","Avancé"])){
+        echo htmlspecialchars($_POST['level']);
+    }else{
+        echo"Choice inavailable";
+    }   
+
+    $title=$_POST['title']; $desc=$_POST['description']; $level=$_POST['level'];
+mysqli_query($connect,"INSERT INTO courses(title,description,level,created_at) VALUES('$title','$desc','$level',NOW())");
+header('Location: courses_list.php'); exit;
+
+    // move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\image.png");
+    
+}
 ?>
 
 <section>
-    <form id="my_form" action="add_course.php" method="POST">
+    <form id="my_form" action="add_course.php" method="POST" enctype="multipart/form-data">
     <h4>ADD COURSE</h4>
     <label id="lateral_title">Title:</label>
     <input id="title" type="text" name="title">
@@ -28,6 +49,10 @@ if(isset($_POST['submit'])){
     </select>
     <label>Created at:</label>
     <input id="created_at" type="datetime-local" name="created_at">
+
+              <label>Course Image</label>
+              <input id="start" name="start" type="file" />
+
     <!-- <button  name="mode">Change mode</button> -->
     <button id="submit" name="submit">Submit</button>
     </form>
