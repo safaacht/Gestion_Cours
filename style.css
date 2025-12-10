@@ -107,18 +107,19 @@ footer {
 }
 
 
-.all_cards{
+.all_cards {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap; 
+    justify-content: space-evenly; 
+    gap: 20px; 
+    padding: 20px; 
 }
-.card{
+
+.card {
     border-radius: 2px;
     background-color: #2f1a67;
-    
-
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 150px; 
 }
 
 .card_content{
@@ -126,4 +127,11 @@ footer {
     color: #ccc;
     font-weight: bold;
     
+}
+.bouttons{
+    display: flex;
+    justify-content: right;
+}
+.delete{
+    background-color: red;
 }
