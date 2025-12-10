@@ -21,7 +21,7 @@ $courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
     
             </div>
 
-            <a class="btn-secondary btn" href="add_section.php?course_id=<?= $course['id'] ?>">Sections</a>
+            <a class="btn-secondary btn" href="sections_list.php?course_id=<?= $course['id'] ?>">Sections</a>
             <a class="btn" href="courses_edit.php?id=<?= $course['id'] ?>">Edit</a>
             <a class="btn-danger btn" onclick="return confirm('Supprimer ce cours ?')" 
                href="courses_delete.php?id=<?= $course['id'] ?>">DELETE</a>
