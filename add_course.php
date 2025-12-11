@@ -6,12 +6,18 @@ include('connect_php.php');
 if(isset($_POST['submit'])){
     
     if(empty($_POST['title'])){
-        echo "Tiltle is required";
+        // TODO: ne fait pas l'affichage de message d'error directement, 
+        // fait le sauvgarde dans un var $error, 
+        // puis l'utilisation ca serai un echo $error dans la formulaire   
+        echo "Tiltle is required"; 
     }else{
+        // TODO: c'est les donnés sont validés rien a afficher, ce line a supprimer
         echo htmlspecialchars($_POST['title']);
     }
 
-if(empty($_POST['description'])){
+    // TODO: a la place de faire plusieurs empty($_POST....)
+    // ajouter une fonction input_valid($value): bool dans un fichiers includes/helper.php
+if(empty($_POST['description'])){ 
         echo "Description is required";
     }else{
         echo htmlspecialchars($_POST['description']);
@@ -25,7 +31,9 @@ if(!isset($_POST['level'])){
     }   
 
     $title=$_POST['title']; $desc=$_POST['description']; $level=$_POST['level'];
+    // TODO: n'affect pas NOW comme valeur, ajouter le constraint default dans la base de donnée  
 mysqli_query($connect,"INSERT INTO courses(title,description,level,created_at) VALUES('$title','$desc','$level',NOW())");
+    // INFO: header Location peut faire des problèmes c'est vous avez des errors avant
 header('Location: courses_list.php'); exit;
 
     // move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\image.png");
@@ -83,6 +91,8 @@ header('Location: courses_list.php'); exit;
     console.log(errors);
 
     
+    // TODO: ce code a revoir avec attention, 
+    // ta supprimé l'element (.hadi) et puis tu va le redefinir directement (ul) !
     if(document.querySelector(".hadi")){      
         document.querySelector(".hadi").remove();    
     }
