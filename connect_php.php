@@ -12,7 +12,7 @@ $connect=mysqli_connect($db_server,
                         $db_name
 );
 
-
+// laisser la validation, c'est nya pas de connection alors quitter l'app
 // making sure if the connection went well
 // if($connect){
 //     echo "You are connected!";

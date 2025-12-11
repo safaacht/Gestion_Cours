@@ -7,7 +7,7 @@ if($_POST){
 $title=$_POST['title'];
 $content=$_POST['content']; 
 $position=$_POST['position'];
-
+// TODO: pas de validation !
 
 mysqli_query($connect,"INSERT INTO sections(course_id,title,content,position,created_at) VALUES($cid,'$title','$content',$pos,NOW())");
 
@@ -18,6 +18,7 @@ exit;
 
 
 <section>
+    <!-- add_course.php ta quand meme tester ce code ?!! -->
     <form id="my-form" action="add_course.php" method="POST">
     <h4>ADD Section</h4>
     <label>Title:</label>
