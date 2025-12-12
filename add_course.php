@@ -2,7 +2,7 @@
 include('connect_php.php');
 include 'helper.php';
 
-$error=[];
+$errors=[];
 
 if(isset($_POST['submit'])){
     
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
     }  
 
 
-    if(empty($error)){
+    if(empty($errors)){
     $title=$_POST['title'];
     $desc=$_POST['description'];
     $level=$_POST['level'];
