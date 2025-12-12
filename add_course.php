@@ -1,6 +1,6 @@
 <?php include('header.php') ;
 include('connect_php.php');
-include'helper.php';
+include 'helper.php';
 
 $error=[];
 
@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
         echo htmlspecialchars($_POST['title']);
     }
 
-if(empty(!input_valid($_POST['description'])){
+if(empty(!input_valid($_POST['description']))){
         $errors['description'] = "Description is required";
     }else{
         echo htmlspecialchars($_POST['description']);
@@ -23,11 +23,18 @@ if(!isset($_POST['level'])){
         echo htmlspecialchars($_POST['level']);
     }else{
         echo"Choice inavailable";
-    }   
+    }  
 
-    $title=$_POST['title']; $desc=$_POST['description']; $level=$_POST['level'];
-mysqli_query($connect,"INSERT INTO courses(title,description,level,created_at) VALUES('$title','$desc','$level',NOW())");
-header('Location: courses_list.php'); exit;
+
+    if(empty($error)){
+    $title=$_POST['title'];
+    $desc=$_POST['description'];
+    $level=$_POST['level'];
+
+    mysqli_query($connect,"INSERT INTO courses (title,description,level) VALUES('$title','$desc','$level'");
+    header('Location: courses_list.php'); exit;
+    }
+
 
     // move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\image.png");
     
