@@ -15,8 +15,7 @@ if(isset($_GET['id'])){
         echo "Erreur lors de la suppression du cours: " . mysqli_error($connect);
     }
 }else{
-        // get is done without id
-        header("Location:courses_list.php");
+        echo "Error 404: Course not found!";
         exit();
     }
     
