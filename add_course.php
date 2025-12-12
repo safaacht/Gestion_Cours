@@ -1,18 +1,19 @@
 <?php include('header.php') ;
 include('connect_php.php');
+include'helper.php';
 
-
+$error=[];
 
 if(isset($_POST['submit'])){
     
-    if(empty($_POST['title'])){
-        echo "Tiltle is required";
+    if(!input_valid($_POST['title'])){
+        $errors['title'] = "Title is required";    
     }else{
         echo htmlspecialchars($_POST['title']);
     }
 
-if(empty($_POST['description'])){
-        echo "Description is required";
+if(empty(!input_valid($_POST['description'])){
+        $errors['description'] = "Description is required";
     }else{
         echo htmlspecialchars($_POST['description']);
     }
