@@ -12,12 +12,12 @@ if(isset($_POST['submit'])){
         echo htmlspecialchars($_POST['title']);
     }
 
-if(empty(!input_valid($_POST['description']))){
+    if(!input_valid($_POST['description'])){
         $errors['description'] = "Description is required";
     }else{
         echo htmlspecialchars($_POST['description']);
     }
-if(!isset($_POST['level'])){
+    if(!isset($_POST['level'])){
         echo "Choose a level";
     }elseif(in_array($_POST['level'],["Débutant","Intermédiaire","Avancé"])){
         echo htmlspecialchars($_POST['level']);
@@ -44,7 +44,7 @@ if(!isset($_POST['level'])){
 <section>
     <form id="my_form" action="add_course.php" method="POST" enctype="multipart/form-data">
     <h4>ADD COURSE</h4>
-    <label id="lateral_title">Title:</label>
+    <label id="label_title">Title:</label>
     <input id="title" type="text" name="title">
     <label>Description:</label>
     <input id="description" type="text" name="description">
@@ -74,7 +74,7 @@ if(!isset($_POST['level'])){
     const createdAt=document.querySelector("#created_at");
     const submit=document.querySelector("#submit");
 
-    const lateralTitle=document.querySelector("#lateral_title")
+    const labelTitle=document.querySelector("#label_title")
 
 
     
@@ -90,25 +90,26 @@ if(!isset($_POST['level'])){
 
     console.log(errors);
 
-    
-    if(document.querySelector(".hadi")){      
-        document.querySelector(".hadi").remove();    
-    }
-    const ul=document.createElement("ul");
+    //hadi is the container of all validation errors
+
+    let ul = document.querySelector(".hadi");
+
+    if (!ul) {
+    ul = document.createElement("ul");
     ul.classList.add("hadi");
-    // ul.innerHTML = "";
+    form.insertBefore(ul, labelTitle);
+    }
+
+    ul.innerHTML = "";
+
     errors.forEach(error=>{
         const li=document.createElement("li");
         li.textContent+=error;
         ul.appendChild(li);
     })
 
-    form.insertBefore(ul,lateralTitle);
-
-
 })
 
 </script>
-
 
 <?php include('./footer.php') ?>
