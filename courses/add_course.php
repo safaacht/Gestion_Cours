@@ -31,12 +31,19 @@ if(isset($_POST['submit'])){
     $desc=$_POST['description'];
     $level=$_POST['level'];
 
-    mysqli_query($connect,"INSERT INTO courses (title,description,level) VALUES('$title','$desc','$level'");
+    $sql="INSERT INTO courses (title,description,level) VALUES(?,?,?)";
+
+    $stmt=mysqli_prepare($connect,$sql);
+    mysqli_stmt_bind_param($stmt,"sss",$title,$desc,$level);
+    mysqli_stmt_execute($stmt);
+
+    mysqli_stmt_close($stmt);
+
     header('Location: courses_list.php'); exit;
     }
 
 
-    // move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\image.png");
+    move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\assets\\image.png");
     
 }
 ?>
