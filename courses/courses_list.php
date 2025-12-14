@@ -14,6 +14,7 @@ $courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
     <?php foreach($courses as $course){ ?>
         <div class="card">
             <div class="card_content">
+                <img src="/assets/image.png">
                 <h5> <?php echo htmlspecialchars($course['title']);?> </h5>
                 <h5> <?php echo htmlspecialchars($course['description']);?> </h5>
                 <h5> <?php echo htmlspecialchars($course['level']);?> </h5>
