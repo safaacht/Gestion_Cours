@@ -1,37 +1,38 @@
 <?php 
-include('header.php');
-require 'connect_php.php';
-include 'helper.php';
+include('../includes/header.php');
+include('../includes/connect_php.php');
+include('../includes/helper.php');
 
 
 
-
-$cid=$_GET['course_id'];
-if($_POST){
-    $title=$_POST['title'];
-    $content=$_POST['content']; 
-    $position=$_POST['position'];
-    
-    
+if(isset($_POST['submit'])){
     if (!input_valid($title) || !input_valid($content) || !input_valid($position) || !is_numeric($position) || $position <= 0) {
         echo "Invalid input.";
         exit;
+    }else{
+        $cid=$_GET['course_id'];
+        $title=$_POST['title'];
+        $content=$_POST['content']; 
+        $position=$_POST['position'];
+        
+        
+        $rqt="INSERT INTO sections(title,content,position) VALUES(?,?,?)";
+    
+    $stmt=mysqli_prepare($connect,$rqt);
+    mysqli_stmt_bind_param($stmt,'ssi',$title,$content,$position);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    
+    header("Location: /Gestion_Cours/sections/sections_list.php?course_id=$cid"); 
+    exit;
+
     }
-    $rqt="INSERT INTO sections(course_id,title,content,position) VALUES(?,?,?,?)";
-
-$stmt=mysqli_prepare($connect,$rqt);
-mysqli_stmt_bind_param($stmt,'issi',$cid,$title,$content,$position);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_close($stmt);
-
-header("Location: sections_list.php?course_id=$cid"); 
-exit;
 }
 ?>
 
 
 <section>
-    <form id="my-form" action="add_course.php" method="POST">
+    <form id="my-form" action="/Gestion_Cours/courses/add_course.php" method="POST">
     <h4>ADD Section</h4>
     <label>Title:</label>
     <input type="text" name="title" id="title">
@@ -73,4 +74,4 @@ form.addEventListener('submit',(e)=>{
 });
 </script>
 
-<?php include('./footer.php') ?>
+<?php include '../includes/footer.php' ?>

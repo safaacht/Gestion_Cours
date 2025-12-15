@@ -11,7 +11,9 @@ $connect=mysqli_connect($db_server,
                         $db_mdp,
                         $db_name
 );
-
+// if($connect){
+//     echo "AAAAAAAAAAA";
+// }
 // if there is no connection stop the script immediately
 if(!$connect){
     die("Database connection: failed" );

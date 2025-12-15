@@ -38,3 +38,27 @@ SELECT * FROM courses WHERE id BETWEEN 2 AND 3;
 SELECT * FROM courses WHERE id NOT BETWEEN 2 AND 3;
 
 SELECT * FROM courses WHERE level like '%e';
+
+//Part2//
+
+
+CREATE TABLE users(
+id int PRIMARY KEY AUTO_INCREMENT,
+    email varchar(50) NOT null UNIQUE,
+    password varchar(50) NOT null
+)
+
+INSERT INTO `users`( `email`, `password`) VALUES ('safaachtaoui@gmail.com','safaa123'),('user@example.com','loremlorem');
+
+SELECT * FROM `users` WHERE email='safaachtaoui@gmail.com';
+
+
+CREATE TABLE enrollement(
+    id_user int,
+    FOREIGN KEY (id_user) REFERENCES users (id) 
+    ON DELETE CASCADE,
+    id_course int,
+    FOREIGN KEY (id_course) REFERENCES courses (id) 
+    ON DELETE CASCADE,
+    PRIMARY KEY (id_user,id_course)
+)

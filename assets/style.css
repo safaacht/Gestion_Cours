@@ -60,10 +60,6 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-a.delete {
-    color: red;
-    text-decoration: none;
-}
 
 .btn {
     display: inline-block;
@@ -89,7 +85,7 @@ input, textarea, select {
 
 button {
     padding: 0.5rem 1rem;
-    background-color: #4CAF50;
+    background-color: rgb(23, 23, 151);
     color: white;
     border: none;
     border-radius: 4px;
@@ -132,6 +128,12 @@ footer {
     display: flex;
     justify-content: right;
 }
-.delete{
+
+.btn-danger{
     background-color: red;
+}
+
+.btn-secondary{
+    background-color: rgb(126, 96, 96);
+
 }

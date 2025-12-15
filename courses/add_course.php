@@ -1,6 +1,6 @@
-<?php include('header.php') ;
-include('connect_php.php');
-include 'helper.php';
+<?php 
+include('../includes/header.php');
+include('../includes/connect_php.php');
 
 $errors=[];
 
@@ -119,4 +119,4 @@ if(isset($_POST['submit'])){
 
 </script>
 
-<?php include('./footer.php') ?>
+<?php include '../includes/footer.php' ?>

@@ -1,7 +1,8 @@
 <?php
-require 'connect_php.php';
-include 'header.php';
-include 'helper.php';
+include('../includes/header.php');
+include('../includes/connect_php.php');
+include('../includes/helper.php');
+
 
 $id=$_GET['id']; 
 
@@ -63,4 +64,4 @@ $errors=[];
 <textarea name='description'><?= $course['description'] ?></textarea><br>
 <button>Update</button>
 </form>
-<?php include 'footer.php'; ?>
+<?php include '../includes/footer.php' ?>

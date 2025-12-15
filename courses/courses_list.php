@@ -1,6 +1,6 @@
 <?php
-include('header.php');
-require('connect_php.php');
+include('../includes/header.php');
+include('../includes/connect_php.php');
 
 $sql="SELECT * FROM courses";
 $result=mysqli_query($connect,$sql);
@@ -14,7 +14,7 @@ $courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
     <?php foreach($courses as $course){ ?>
         <div class="card">
             <div class="card_content">
-                <img src="/assets/image.png">
+                <!-- <img src="/assets/image.png"> -->
                 <h5> <?php echo htmlspecialchars($course['title']);?> </h5>
                 <h5> <?php echo htmlspecialchars($course['description']);?> </h5>
                 <h5> <?php echo htmlspecialchars($course['level']);?> </h5>
@@ -22,10 +22,10 @@ $courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
     
             </div>
 
-            <a class="btn-secondary btn" href="sections_list.php?course_id=<?= $course['id'] ?>">Sections</a>
-            <a class="btn" href="courses_edit.php?id=<?= $course['id'] ?>">Edit</a>
+            <a class="btn-secondary btn" href="../sections/sections_list.php ?course_id=<?=$course['id'] ?>">Sections</a>
+            <a class="btn" href="../courses/courses_edit.php?id=<?=$course['id'] ?>">Edit</a>
             <a class="btn-danger btn" onclick="return confirm('Supprimer ce cours ?')" 
-               href="courses_delete.php?id=<?= $course['id'] ?>">DELETE</a>
+               href=" ../courses/courses_delete.php?id=<?=$course['id'] ?>">DELETE</a>
 
         </div>
     <?php }?>
@@ -33,4 +33,4 @@ $courses=mysqli_fetch_all($result,MYSQLI_ASSOC);
 </div>
 
 
-<?php include('./footer.php') ?>
+<?php include '../includes/footer.php' ?>
