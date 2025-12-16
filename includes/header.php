@@ -14,7 +14,8 @@
             <ul>
                 <li><a href="../courses/courses_list.php">Cours</a></li>
                 <li><a href="../courses/add_course.php">Ajouter(cours)</a></li>
-                <li><a href="../sections/add_section.php">Ajouter(section)</a></li>
+                <li><a href="../Authentification/login.php">Log in</a></li>
+                <li><a href="../Authentification/register.php">Sign up</a></li>
             </ul>
         </nav>
     </header>
