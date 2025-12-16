@@ -52,6 +52,8 @@ INSERT INTO `users`( `email`, `password`) VALUES ('safaachtaoui@gmail.com','safa
 
 SELECT * FROM `users` WHERE email='safaachtaoui@gmail.com';
 
+ALTER TABLE users ADD user_name varchar(50) UNIQUE;
+INSERT INTO users(email,password,user_name) VALUES('safaacht@gmail.com','laaa','safaa chtaoui');
 
 CREATE TABLE enrollement(
     id_user int,
