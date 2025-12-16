@@ -6,33 +6,33 @@ include('../includes/helper.php');
 
 
 if(isset($_POST['submit'])){
+    $title=$_POST['title'];
+    $content=$_POST['content']; 
+    $position=$_POST['position'];
+    
     if (!input_valid($title) || !input_valid($content) || !input_valid($position) || !is_numeric($position) || $position <= 0) {
         echo "Invalid input.";
         exit;
-    }else{
-        $cid=$_GET['course_id'];
-        $title=$_POST['title'];
-        $content=$_POST['content']; 
-        $position=$_POST['position'];
-        
-        
-        $rqt="INSERT INTO sections(title,content,position) VALUES(?,?,?)";
+    }
+    
+    $cid=$_GET['course_id'];
+    $rqt="INSERT INTO sections(courses_id,title,content,position) VALUES(?,?,?,?)";
     
     $stmt=mysqli_prepare($connect,$rqt);
-    mysqli_stmt_bind_param($stmt,'ssi',$title,$content,$position);
+    mysqli_stmt_bind_param($stmt,'issi',$cid,$title,$content,$position);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     
-    header("Location: /Gestion_Cours/sections/sections_list.php?course_id=$cid"); 
+    header("Location: ../sections/sections_list.php?course_id=$cid"); 
     exit;
 
     }
-}
+
 ?>
 
 
 <section>
-    <form id="my-form" action="/Gestion_Cours/courses/add_course.php" method="POST">
+    <form id="my-form"  method="POST">
     <h4>ADD Section</h4>
     <label>Title:</label>
     <input type="text" name="title" id="title">
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
 form=document.getElementById('my-form');
 
 form.addEventListener('submit',(e)=>{
-    e.preventDefault();
+    // e.preventDefault();
     const title = document.getElementById('title').value.trim();
     const content = document.getElementById('content').value.trim();
     const position = document.getElementById('position').value.trim();
