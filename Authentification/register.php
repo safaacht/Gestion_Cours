@@ -29,8 +29,6 @@ if(($passwordRepeated!=$password)){
 }
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$sql="INSERT INTO users(email,password,user_name) VALUES(?,?,?)";
-
 $check = mysqli_prepare($connect, "SELECT id FROM users WHERE email = ?");
 mysqli_stmt_bind_param($check, 's', $email);
 mysqli_stmt_execute($check);
@@ -40,6 +38,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "Email already exists!";
     exit;
 }
+
+$sql="INSERT INTO users(email,password,user_name) VALUES(?,?,?)";
 $stmt=mysqli_prepare($connect,$sql);
 mysqli_stmt_bind_param($stmt,'sss',$email,$hashed_password,$user_name);
 mysqli_stmt_execute($stmt);
