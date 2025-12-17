@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,8 +15,14 @@
             <ul>
                 <li><a href="../courses/courses_list.php">Cours</a></li>
                 <li><a href="../courses/add_course.php">Ajouter(cours)</a></li>
-                <li><a href="../Authentification/login.php">Log in</a></li>
                 <li><a href="../Authentification/register.php">Sign up</a></li>
+                <?php if(isset($_SESSION['user_id'])){?>
+                <form action="../Authentification/logout.php">
+                    <button name="logout" type="submit">Log out</button>
+                </form>
+                <?php }else{?>
+                <li><a href="../Authentification/login.php">Log in</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </header>
