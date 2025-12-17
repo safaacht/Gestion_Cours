@@ -7,8 +7,8 @@ include '../includes/helper.php';
 if(isset($_POST['register'])){
 
 $email=$_POST['email'];
-$password=htmlspecialchars($_POST['password']);
-$passwordRepeated=htmlspecialchars($_POST['password_repeat']);
+$password=$_POST['password'];
+$passwordRepeated=$_POST['password_repeat'];
 $user_name=$_POST['user_name'];
 
 if(!input_valid($_POST['email']) || !input_valid($_POST['password']) || !input_valid($_POST['user_name'])){
@@ -19,6 +19,7 @@ if(!input_valid($_POST['email']) || !input_valid($_POST['password']) || !input_v
 $email_pattern='/^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/';
 if (!preg_match($email_pattern, $email)){
     echo "Email not valid";
+    exit;
 }
 
 if(($passwordRepeated!=$password)){
@@ -26,15 +27,21 @@ if(($passwordRepeated!=$password)){
     exit;
 
 }
-
-// $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-// var_dump($hashed_password);
-
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 $sql="INSERT INTO users(email,password,user_name) VALUES(?,?,?)";
 
+$check = mysqli_prepare($connect, "SELECT id FROM users WHERE email = ?");
+mysqli_stmt_bind_param($check, 's', $email);
+mysqli_stmt_execute($check);
+$result = mysqli_stmt_get_result($check);
+
+if (mysqli_num_rows($result) > 0) {
+    echo "Email already exists!";
+    exit;
+}
 $stmt=mysqli_prepare($connect,$sql);
-mysqli_stmt_bind_param($stmt,'sss',$email,$password,$user_name);
+mysqli_stmt_bind_param($stmt,'sss',$email,$hashed_password,$user_name);
 mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
