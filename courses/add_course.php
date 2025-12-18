@@ -1,6 +1,7 @@
 <?php 
 include('../includes/header.php');
 include('../includes/connect_php.php');
+include '../includes/helper.php';
 
 $errors=[];
 
@@ -30,6 +31,7 @@ if(isset($_POST['submit'])){
     $title=$_POST['title'];
     $desc=$_POST['description'];
     $level=$_POST['level'];
+    
 
     $sql="INSERT INTO courses (title,description,level) VALUES(?,?,?)";
 
@@ -38,12 +40,12 @@ if(isset($_POST['submit'])){
     mysqli_stmt_execute($stmt);
 
     mysqli_stmt_close($stmt);
+    // move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\laragon\\www\\Gestion_Cours\\assets\\image2.png");
 
     header('Location: courses_list.php'); exit;
     }
 
 
-    move_uploaded_file($_FILES["start"]["tmp_name"], "C:\\xampp\\htdocs\\courses_sections\\Gestion_Cours\\assets\\image.png");
     
 }
 ?>
