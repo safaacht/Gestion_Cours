@@ -24,5 +24,11 @@
                 <li><a href="../Authentification/login.php">Log in</a></li>
                 <?php } ?>
             </ul>
+            <div class="user_name">
+                <?php if(isset($_SESSION['user_id'])){?>
+                    <p>User:<?=$_SESSION['email']?></p>
+                <?php }else{?>
+                <?php } ?>
+            </div>
         </nav>
     </header>
