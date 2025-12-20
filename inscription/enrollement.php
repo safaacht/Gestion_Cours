@@ -3,11 +3,10 @@ session_start();
 include '../includes/connect_php.php';
 
 if(!isset($_SESSION['user_id'])){
-    header("locatoin:../Authentification/loging.php");exit;
+    header("location:../Authentification/loging.php");exit;
 }
 // echo $_GET['course_id'];
 if (!isset($_GET['course_id'])) {
-    // echo "aaaaaaaa";
     echo "Cours Introuvable!";
     exit();
 }
@@ -21,6 +20,8 @@ $check=mysqli_query($connect,"SELECT * FROM enrollment WHERE id_user=$user_id AN
 
 if (mysqli_num_rows($check) > 0) {
     echo "U're already registred in this course";
+    // header('location:../inscription/my_courses.php');
+    echo "<a href=../inscription/my_courses.php> See my courses </a>";
     exit();
 }
 
