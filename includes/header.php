@@ -15,6 +15,8 @@
             <ul>
                 <li><a href="../courses/courses_list.php">Cours</a></li>
                 <li><a href="../courses/add_course.php">Ajouter(cours)</a></li>
+                <li><a href="../inscription/my_courses.php">My courses</a></li>
+                <li><a href="../statistics/stats_dashboard.php">Dashbord</a></li>
                 <li><a href="../Authentification/register.php">Sign up</a></li>
                 <?php if(isset($_SESSION['user_id'])){?>
                 <form action="../Authentification/logout.php">
