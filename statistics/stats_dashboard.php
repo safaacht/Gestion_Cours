@@ -40,7 +40,7 @@ $inscription=mysqli_query($connect,"SELECT u.id,u.user_name,c.created_at
 FROM enrollment e 
 JOIN users u ON e.id_user = u.id 
 JOIN courses c ON e.id_course = c.id 
-WHERE YEAR(e.created_at) = YEAR(CURDATE())");
+WHERE YEAR(c.created_at) = YEAR(CURDATE())");
 $user=mysqli_fetch_assoc($inscription);
 
 // Tableau de Cours Sans Inscription
@@ -56,7 +56,7 @@ $sql1=mysqli_query($connect,"SELECT u.id AS user_id, u.user_name as name, u.emai
 FROM enrollment e 
 JOIN users u ON e.id_user = u.id 
 JOIN courses c ON e.id_course = c.id
-ORDER BY e.created_at DESC
+ORDER BY c.created_at DESC
 LIMIT 1");
 $last_inscription=mysqli_fetch_assoc($sql1);
 ?>
