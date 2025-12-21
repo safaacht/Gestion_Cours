@@ -9,28 +9,30 @@
     <!-- <script src="script.js" defer></script> -->
 </head>
 <body>
-    <header>
-        <h1>LMS- Gestion des Cours</h1>
-        <nav>
-            <ul>
-                <li><a href="../courses/courses_list.php">Cours</a></li>
-                <li><a href="../courses/add_course.php">Ajouter(cours)</a></li>
-                <li><a href="../inscription/my_courses.php">My courses</a></li>
-                <li><a href="../statistics/stats_dashboard.php">Dashbord</a></li>
-                <li><a href="../Authentification/register.php">Sign up</a></li>
-                <?php if(isset($_SESSION['user_id'])){?>
-                <form action="../Authentification/logout.php">
-                    <button name="logout" type="submit">Log out</button>
-                </form>
-                <?php }else{?>
-                <li><a href="../Authentification/login.php">Log in</a></li>
-                <?php } ?>
-            </ul>
-            <div class="user_name">
-                <?php if(isset($_SESSION['user_id'])){?>
-                    <p>User:<?=$_SESSION['email']?></p>
-                <?php }else{?>
-                <?php } ?>
-            </div>
-        </nav>
-    </header>
+<header class="main-header">
+    <a href="../courses/courses_list.php" class="nav-brand">LMS</a>
+
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="../courses/courses_list.php" class="nav-link">Cours</a></li>
+            <li><a href="../courses/add_course.php" class="nav-link">Ajouter</a></li>
+            <li><a href="../inscription/my_courses.php" class="nav-link">Mes Cours</a></li>
+            <li><a href="../statistics/stats_dashboard.php" class="nav-link">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="nav-user-section">
+        <?php if(isset($_SESSION['user_id'])): ?>
+            <span class="user-email">
+                <i class="fas fa-user-circle"></i> <?=$_SESSION['email']?>
+            </span>
+            <form action="../Authentification/logout.php" style="margin:0;">
+                <button name="logout" type="submit" class="btn-logout">Log out</button>
+            </form>
+        <?php else: ?>
+            <a href="../Authentification/register.php" class="nav-link">Sign up</a>
+            <a href="../Authentification/login.php" class="nav-link" style="font-weight:bold;">Log in</a>
+        <?php endif; ?>
+    </div>
+    
+</header>

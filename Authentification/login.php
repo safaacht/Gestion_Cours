@@ -3,17 +3,29 @@ include '../includes/header.php';
 include '../includes/connect_php.php';
 ?>
 
-<section>
-    <form id="login_form" method="POST">
-        <label for="email"><b>Email</b></label>
-        <input type="email" name="email" placeholder="enter ur email">
-        <label for="password"><b>Password</b></label>
-        <input type="password" name="password" placeholder="enter ur password">
+<section class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Please enter your details to log in</p>
 
-        <button type="submit" name="login">Log in</button>
-        <p>Don't have an account?<a href="../Authentification/register.php">Sign up</a></p>
+        <form id="login_form" method="POST">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" class="auth-input" placeholder="name@example.com" required>
+            </div>
 
-    </form>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="auth-input" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" name="login" class="btn-primary-auth">Log In</button>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="register.php">Sign up</a>
+            </div>
+        </form>
+    </div>
 </section>
 
 <?php

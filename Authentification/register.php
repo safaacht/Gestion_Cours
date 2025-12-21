@@ -48,21 +48,39 @@ mysqli_stmt_close($stmt);
 header('Location:../courses/courses_list.php');exit;
 }
 ?>
-<section>
-<form id="register_frm" method="POST">
-    <label for="user_name"><b>Name</b></label>
-    <input name="user_name" type="text" id="user_name" placeholder="Enter ur name..." required>
-    <label for="email"><b>Email</b></label>
-    <input name="email" type="text" id="email" placeholder="xxxxxx@gmail.com" required>
-     <label for="password"><b>Password</b></label>
-    <input name="password" type="password" id="password" placeholder="Enter Password..." required>
-     <label for="password_repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password..." name="password_repeat" id="password_repeat" required>
+<section class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join our learning platform today</p>
 
-    <button id="register" name="register">Sign up</button>
-    <p>Already have an account?<a href="../Authentification/login.php">Log in</a></p>
-    
-</form>
+        <form id="register_frm" method="POST">
+            <div class="form-group">
+                <label for="user_name">Full Name</label>
+                <input name="user_name" type="text" class="auth-input" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input name="email" type="email" class="auth-input" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" class="auth-input" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password_repeat">Confirm Password</label>
+                <input name="password_repeat" type="password" class="auth-input" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" name="register" class="btn-primary-auth">Sign Up</button>
+            
+            <div class="auth-footer">
+                Already have an account? <a href="login.php">Log in</a>
+            </div>
+        </form>
+    </div>
 </section>
 
 <script>

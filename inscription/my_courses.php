@@ -16,12 +16,21 @@ mysqli_stmt_close($stmt);
 }
 ?>
 
-<div class="all_cdcards">
-    <?php foreach($courses as $course){ ?>
-    <div class="card">
-        <p><?= htmlspecialchars($course['title']) ?></p>
-        <p><?= htmlspecialchars($course['description']) ?></p>
-        <p><?= htmlspecialchars($course['level']) ?></p>
-    </div>
-    <?php } ?>
+<div class="courses-grid">
+    <?php if(empty($courses)): ?>
+        <p>You are not enrolled in any courses yet.</p>
+    <?php else: ?>
+        <?php foreach($courses as $course): ?>
+            <div class="course-item">
+                <div class="course-banner"></div>
+                <div class="course-body">
+                    <span class="badge-level">
+                        <i class="fas fa-signal"></i> <?= htmlspecialchars($course['level']) ?>
+                    </span>
+                    <h3 class="course-title"><?= htmlspecialchars($course['title']) ?></h3>
+                    <p class="course-desc"><?= htmlspecialchars($course['description']) ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
